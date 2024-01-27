@@ -135,17 +135,37 @@ function preferredMinHeight() {
 
 function preferredMaxHeight() {
     if (tasks.vertical) {
-      return verticalMargins() +
-             Math.min(
-                 // Do not allow the preferred icon size to exceed the width of
-                 // the vertical task manager.
-                 tasks.width,
-                 tasks.iconsOnly ? tasks.width :
-                    Math.max(
-                        PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).height,
-                        PlasmaCore.Units.iconSizes.medium
-                    )
-             );
+        if(plasmoid.configuration.autoIconSize){
+            return verticalMargins() +
+                    Math.min(
+                        // Do not allow the preferred icon size to exceed the width of
+                        // the vertical task manager.
+                        tasks.width,
+                        tasks.iconsOnly ? tasks.width :
+                            Math.max(
+                                PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).height,
+                                PlasmaCore.Units.iconSizes.medium
+                            )
+                    );
+            } else {
+                   switch(plasmoid.configuration.iconSize) {
+                    case 0:
+                        return PlasmaCore.Units.iconSizes.small;
+                    case 1:
+                        return PlasmaCore.Units.iconSizes.smallMedium;
+                    case 2:
+                        return PlasmaCore.Units.iconSizes.medium;
+                    case 3:
+                        return PlasmaCore.Units.iconSizes.large;
+                    case 4:
+                        return PlasmaCore.Units.iconSizes.huge;
+                    case 5:
+                        return PlasmaCore.Units.iconSizes.enormous;
+                    default:
+                        return PlasmaCore.Units.iconSizes.medium;
+                }
+            }
+
     } else {
       return verticalMargins() +
              Math.min(

@@ -67,6 +67,26 @@
       <label>Whether to try and always layout task buttons in as many rows/columns as set via maxStripes.</label>
       <default>false</default>
     </entry>
+    <entry name="showText" type="Bool">
+      <label>Whether to show text next to tasks</label>
+      <default>false</default>
+    </entry>
+    <entry name="autoIconSize" type="Bool">
+      <label>Whether to have icons automatically change size.</label>
+      <default>true</default>
+    </entry>
+    <entry name="iconSize" type="Enum">
+      <label>Override icon size</label>
+      <choices>
+            <choice name="Small"/>
+            <choice name="Small Medium"/>
+            <choice name="Medium"/>
+            <choice name="Large"/>
+            <choice name="Huge"/>
+            <choice name="Enormous"/>
+      </choices>
+      <default>2</default>
+    </entry>
     <entry name="showToolTips" type="Bool">
       <label>Whether to show tooltips when hovering task buttons.</label>
       <default>true</default>

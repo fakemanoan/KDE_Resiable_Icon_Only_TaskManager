@@ -20,13 +20,17 @@ Kirigami.FormLayout {
     readonly property bool plasmoidVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
     readonly property bool iconOnly: Plasmoid.pluginName === "org.kde.plasma.icontasks"
 
+    property alias cfg_showText: showText.checked
     property alias cfg_showToolTips: showToolTips.checked
     property alias cfg_highlightWindows: highlightWindows.checked
     property bool cfg_indicateAudioStreams
     property alias cfg_fill: fill.checked
     property alias cfg_maxStripes: maxStripes.value
     property alias cfg_forceStripes: forceStripes.checked
+    property alias cfg_autoIconSize: autoIconSize.checked
+    property alias cfg_iconSize: iconSize.currentIndex
     property int cfg_iconSpacing: 0
+
 
     CheckBox {
         id: showToolTips
@@ -52,6 +56,11 @@ Kirigami.FormLayout {
         text: i18nc("@option:check", "Fill free space on Panel")
     }
 
+    CheckBox {
+        id: showText
+        text: i18n("Show window names next to icons")
+    }
+
     Item {
         Kirigami.FormData.isSection: true
     }
@@ -67,6 +76,32 @@ Kirigami.FormLayout {
         text: plasmoidVertical ? i18n("Always arrange tasks in rows of as many columns") : i18n("Always arrange tasks in columns of as many rows")
         enabled: maxStripes.value > 1
     }
+
+    Item {
+        Kirigami.FormData.isSection: true
+    }
+
+    CheckBox {
+        id: autoIconSize
+        text: i18n("Automatically size task icons based on the environment")
+    }
+
+    ComboBox {
+            id: iconSize
+            Kirigami.FormData.label: i18n("Icon size:")
+            Layout.fillWidth: true
+
+            enabled: !autoIconSize.checked
+
+            model: [
+                i18n("Small"),
+                i18n("Small Medium"),
+                i18n("Medium"),
+                i18n("Large"),
+                i18n("Huge"),
+                i18n("Enormous")
+            ]
+        }
 
     Item {
         Kirigami.FormData.isSection: true

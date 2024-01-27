@@ -33,7 +33,7 @@ MouseArea {
 
     readonly property bool shouldShirnkToZero: !LayoutManager.logicalTaskCount()
     property bool vertical: plasmoid.formFactor === PlasmaCore.Types.Vertical
-    property bool iconsOnly: plasmoid.pluginName === "org.kde.plasma.icontasks"
+    property bool iconsOnly: !plasmoid.configuration.showText;
 
     property var toolTipOpenedByClick: null
 
